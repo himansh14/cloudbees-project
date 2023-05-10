@@ -90,6 +90,7 @@ cp target/server.war $APP_DIR/server.war
 mkdir -p $APP_DIR/ROOT
 cp dist/* $APP_DIR/ROOT
 /opt/tomcat8/bin/startup.sh'''
+        input(message: 'Deploy?', ok: 'Yes, Go ahead !')
       }
     }
 
