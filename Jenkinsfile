@@ -12,6 +12,7 @@ pipeline {
           }
           steps {
             sh '''echo "Building the server code.."
+              rm -rf * . 
               mvn -version
               mkdir -p target
               touch "target/server.war"'''
