@@ -94,5 +94,18 @@ cp dist/* $APP_DIR/ROOT
       }
     }
 
+    stage('Deploy') {
+      steps {
+        unstash 'server'
+        unstash 'client'
+        sh '''# deploy the exact artifacts to production 
+echo "Deploying client:"
+ls -alFh dist
+echo "Deploying server:"
+ls -alFh target'''
+        echo 'Success'
+      }
+    }
+
   }
 }
