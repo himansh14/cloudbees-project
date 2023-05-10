@@ -28,7 +28,7 @@ pipeline {
           }
           steps {
             sh '''echo "Building the client code..."
-sudo npm install --save react 
+npm install --save react 
 mkdir -p dist 
 cat > dist/index.html <<EOF 
 hello !
