@@ -72,5 +72,26 @@ touch "dist/client.js"'''
       }
     }
 
+    stage('QA') {
+      agent {
+        docker {
+          image 'tomcat:8.0-jre8'
+          args '''-u 0:0 
+-p 8090:8090'''
+        }
+
+      }
+      steps {
+        unstash 'server'
+        unstash 'client'
+        sh '''APP_DIR=/opt/tomcat8/webapps
+rm -rf $APP_DIR/ROOT
+cp target/server.war $APP_DIR/server.war
+mkdir -p $APP_DIR/ROOT
+cp dist/* $APP_DIR/ROOT
+/opt/tomcat8/bin/startup.sh'''
+      }
+    }
+
   }
 }
