@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Server') {
       parallel {
-        stage('Server') {
+        stage('Build') {
           agent {
             docker {
               image 'maven'
@@ -35,6 +35,36 @@ cat > dist/index.html <<EOF
 hello !
 EOF
 touch "dist/client.js"'''
+            stash(name: 'client', includes: '**/dist/*')
+          }
+        }
+
+      }
+    }
+
+    stage('Chrome') {
+      parallel {
+        stage('Test') {
+          agent {
+            docker {
+              image 'selenium/standalone-chrome'
+            }
+
+          }
+          steps {
+            sh 'echo \'mvn test -Dbrowser=chrome\''
+          }
+        }
+
+        stage('Firefox') {
+          agent {
+            docker {
+              image 'selenium/standalone-firefox'
+            }
+
+          }
+          steps {
+            sh 'echo \'mvn test -Dbrowser=firefox\''
           }
         }
 
