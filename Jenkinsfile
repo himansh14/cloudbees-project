@@ -107,5 +107,11 @@ ls -alFh target'''
       }
     }
 
+    stage('End') {
+      steps {
+        echo 'End'
+      }
+    }
+
   }
 }
