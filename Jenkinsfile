@@ -49,6 +49,7 @@ touch "dist/client.js"'''
           agent {
             docker {
               image 'selenium/standalone-chrome'
+              args '-u 0:0'
             }
 
           }
@@ -61,6 +62,7 @@ touch "dist/client.js"'''
           agent {
             docker {
               image 'selenium/standalone-firefox'
+              args '-u 0:0'
             }
 
           }
