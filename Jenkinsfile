@@ -1,7 +1,13 @@
 pipeline {
-  agent any 
+  agent any
   stages {
     stage('Server') {
+      agent {
+        docker {
+          image 'maven'
+        }
+
+      }
       steps {
         sh '''echo "Building the server code.."
               mvn -version
@@ -9,5 +15,6 @@ pipeline {
               touch "target/server.war"'''
       }
     }
+
   }
 }
