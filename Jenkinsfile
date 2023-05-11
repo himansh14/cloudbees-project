@@ -110,11 +110,5 @@ pipeline {
       }
     }
 
-    stage('End') {
-      steps {
-        echo 'End'
-      }
-    }
-
   }
 }
