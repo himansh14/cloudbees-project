@@ -48,9 +48,9 @@ pipeline {
         stage('Test') {
           agent {
             docker {
-              args '''-u 0:0
-                      -p 4444:4444'''
               image 'standalone-chrome'
+              args '''-u 0:0
+-p 4444:4444'''
             }
 
           }
