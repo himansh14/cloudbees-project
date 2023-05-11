@@ -30,12 +30,12 @@ pipeline {
           }
           steps {
             sh '''echo "Building the client code..."
-npm install --save react 
-mkdir -p dist 
-cat > dist/index.html <<EOF 
-hello !
-EOF
-touch "dist/client.js"'''
+                  npm install --save react 
+                  mkdir -p dist 
+                  cat > dist/index.html <<EOF 
+                  hello !
+                  EOF
+                  touch "dist/client.js"'''
             stash(name: 'client', includes: '**/dist/*')
           }
         }
