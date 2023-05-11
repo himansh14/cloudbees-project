@@ -93,7 +93,7 @@ pipeline {
               mkdir -p $APP_DIR/ROOT
               cp dist/* $APP_DIR/ROOT
               /opt/tomcat8/bin/startup.sh'''
-        input(message: 'Deploy?', ok: 'Yes, Go ahead !')
+        input(message: 'Deploy?', ok: 'Yes, Go ahead !!')
       }
     }
 
