@@ -80,7 +80,7 @@ pipeline {
         docker {
           image 'tomcat:8.0-jre8'
           args '''-u 0:0 
-                  -p 8090:8090'''
+-p 8090:8090'''
         }
 
       }
