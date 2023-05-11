@@ -49,8 +49,7 @@ pipeline {
           agent {
             docker {
               image 'selenium/standalone-chrome'
-              args '''-u 0:0
-'''
+              args '-u 0:0'
             }
 
           }
