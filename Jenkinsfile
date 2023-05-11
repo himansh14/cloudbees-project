@@ -12,10 +12,10 @@ pipeline {
           }
           steps {
             sh '''echo "Building the server code.."
-              rm -rf * 
-              mvn -version
-              mkdir -p target
-              touch "target/server.war"'''
+                  rm -rf * 
+                  mvn -version
+                  mkdir -p target
+                  touch "target/server.war"'''
             stash(name: 'server', includes: '**/*.war')
           }
         }
@@ -49,7 +49,7 @@ touch "dist/client.js"'''
           agent {
             docker {
               args '''-u 0:0
--p 4444:4444'''
+                      -p 4444:4444'''
               image 'standalone-chrome'
             }
 
@@ -80,7 +80,7 @@ touch "dist/client.js"'''
         docker {
           image 'tomcat:8.0-jre8'
           args '''-u 0:0 
--p 8090:8090'''
+                  -p 8090:8090'''
         }
 
       }
@@ -88,11 +88,11 @@ touch "dist/client.js"'''
         unstash 'server'
         unstash 'client'
         sh '''APP_DIR=/opt/tomcat8/webapps
-rm -rf $APP_DIR/ROOT
-cp target/server.war $APP_DIR/server.war
-mkdir -p $APP_DIR/ROOT
-cp dist/* $APP_DIR/ROOT
-/opt/tomcat8/bin/startup.sh'''
+              rm -rf $APP_DIR/ROOT
+              cp target/server.war $APP_DIR/server.war
+              mkdir -p $APP_DIR/ROOT
+              cp dist/* $APP_DIR/ROOT
+              /opt/tomcat8/bin/startup.sh'''
         input(message: 'Deploy?', ok: 'Yes, Go ahead !')
       }
     }
@@ -102,10 +102,10 @@ cp dist/* $APP_DIR/ROOT
         unstash 'server'
         unstash 'client'
         sh '''# deploy the exact artifacts to production 
-echo "Deploying client:"
-ls -alFh dist
-echo "Deploying server:"
-ls -alFh target'''
+              echo "Deploying client:"
+              ls -alFh dist
+              echo "Deploying server:"
+              ls -alFh target'''
         echo 'Success'
       }
     }
