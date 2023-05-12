@@ -78,7 +78,7 @@ pipeline {
       agent {
         docker {
           image 'tomcat:8.0-jre8'
-          args '''-u 0:0 
+          args '''-u 114:121
 -p 8090:8090'''
         }
 
