@@ -86,7 +86,6 @@ pipeline {
       steps {
         unstash 'server'
         unstash 'client'
-        sh 'pwd'
         sh '''APP_DIR=/opt/tomcat8/webapps
               rm -rf $APP_DIR/ROOT
               cp target/server.war $APP_DIR/server.war
